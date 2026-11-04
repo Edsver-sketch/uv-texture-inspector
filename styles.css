@@ -7,3 +7,49 @@ body{padding-top:var(--safe-area-inset-top,0px);padding-bottom:var(--safe-area-i
 .candidate-pages{display:flex;justify-content:space-between;align-items:center;margin:12px 0;color:#64758a;font-size:12px}.candidate-pages button{padding:6px 9px;font-size:12px}
 .file-field{gap:0}.file-field>*+*{margin-top:10px}
 button:focus,select:focus,input:focus{outline:3px solid #7ca8fa;outline-offset:2px}
+
+/* Keep the inspection image prominent while allowing the controls to fit a phone. */
+@media (max-width: 800px){
+  main{padding:20px 20px 36px}
+  .workspace{display:block}
+  .workspace>aside{width:auto;margin:24px 0 0}
+  #candidate-list{max-height:none;padding-right:0}
+  .candidate-heading{height:auto;min-height:44px}
+  .candidate-pages button,.candidate-heading button{min-height:44px}
+}
+@media (max-width: 600px){
+  main{padding:16px 14px 32px}
+  header{align-items:flex-start;margin-bottom:18px}
+  header>div{min-width:0;padding-right:10px}
+  h1{font-size:21px;line-height:1.35}
+  header p{line-height:1.6}
+  .local-tag{flex-shrink:0;padding:5px 8px;font-size:12px}
+  .inputs{display:block;padding:16px}
+  .inputs>.file-field+.file-field{margin:20px 0 0;padding-top:20px;border-top:1px solid #d6dfea}
+  .file-field input{display:block;width:100%;min-width:0;min-height:44px}
+  .controls{display:block;margin-top:14px}
+  .controls>*{margin:0 0 10px}
+  .controls label{justify-content:space-between;min-height:44px}
+  .controls label select{width:calc(100% - 80px);min-width:0;min-height:44px}
+  .controls button.primary{width:100%;min-height:44px}
+  .view-controls{display:block}
+  .view-tabs{width:100%}
+  .view-tabs button{flex:1;min-width:0;min-height:44px;padding:8px 4px}
+  #result-count{display:block;margin-top:6px}
+  .canvas-wrap{min-height:240px}
+  .exports{display:block}
+  .exports>*{margin:0 0 10px}
+  .exports button{display:block;width:100%;min-height:44px}
+  .exports label{justify-content:space-between;min-height:44px}
+  .exports label select{flex:1;min-width:0;min-height:44px}
+  .candidate canvas{flex-shrink:0;max-width:38%;height:auto}
+  .candidate-info label{min-height:44px}
+  .candidate-info{min-width:0;overflow-wrap:break-word}
+  .export-view{padding:14px}
+  .export-panel{padding:16px}
+}
+@supports(padding-left:env(safe-area-inset-left)){
+  @media (max-width: 600px){
+    main{padding-left:calc(14px + env(safe-area-inset-left,0px));padding-right:calc(14px + env(safe-area-inset-right,0px))}
+  }
+}
