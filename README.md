@@ -4,6 +4,12 @@
 
 页面和检测算法使用纯 JavaScript、HTML、CSS 与 Canvas，无第三方运行依赖、无需构建，也不向服务器上传输入图片。
 
+## 在线使用
+
+打开 [UV 贴图杂点检查](https://edsver-sketch.github.io/uv-texture-inspector/)，无需安装或登录。图片仍在当前浏览器本地处理。
+
+网站由 GitHub Pages 从 `main` 分支根目录自动发布；后续推送会更新网站。
+
 ## 本地使用
 
 下载并解压仓库，在桌面浏览器中打开根目录的 `index.html`。
