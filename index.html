@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>UV 贴图杂点检查</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="uv-mask.js" defer></script>
+  <script src="detector.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header><div><h1>UV 贴图杂点检查</h1><p>选择纹理和 UV 图，圈出岛内的疑似小杂点。</p></div><span class="local-tag">本地处理</span></header>
+    <section class="inputs" aria-label="导入图片">
+      <div class="file-field"><label for="texture-file">纹理图</label><input id="texture-file" type="file" accept="image/*"><span id="texture-info">选择要检查的 PNG 或 JPG</span></div>
+      <div class="file-field"><label for="uv-file">UV 图</label><input id="uv-file" type="file" accept="image/*"><span id="uv-info">透明、黑底或白底 UV 图</span></div>
+    </section>
+    <section class="controls" aria-label="检测选项">
+      <label>UV 背景 <select id="mask-mode"><option value="auto">自动识别</option><option value="alpha">透明背景</option><option value="dark">黑色 / 深色背景</option><option value="light">白色 / 浅色背景</option></select></label>
+      <label>检测范围 <select id="sensitivity"><option value="0.8">只看明显杂点</option><option value="1" selected>标准</option><option value="1.25">更多候选</option></select></label>
+      <button id="detect" class="primary" disabled>检查杂点</button>
+      <progress id="progress" max="1" value="0" hidden></progress>
+    </section>
+    <p id="status" role="status" aria-live="polite">先选择两张图片。</p>
+    <div class="workspace">
+      <section class="image-workspace" aria-label="纹理预览">
+        <div class="view-controls"><div class="view-tabs" role="group" aria-label="预览模式"><button id="view-marked" aria-pressed="true">圈选结果</button><button id="view-original" aria-pressed="false">原图</button><button id="view-mask" aria-pressed="false">UV 范围</button></div><span id="result-count"></span></div>
+        <div class="canvas-wrap"><canvas id="preview" width="640" height="640" aria-label="纹理和疑似杂点预览"></canvas><div id="empty-preview">从上方选择图片<br><small>检测结果将显示在这里</small></div></div>
+        <div class="exports"><button id="save-overview" disabled>保存标注总图</button><label>放大图 <select id="detail-page" disabled><option>暂无结果</option></select></label><button id="save-details" disabled>保存本页放大图</button></div>
+        <p class="legend"><span class="dot red"></span>较明显候选 <span class="dot amber"></span>需要复核 <span>只标记，原图保持不变</span></p>
+      </section>
+      <aside><div class="candidate-heading"><h2>局部检查</h2><button id="restore" disabled>恢复全部</button></div><p class="candidate-help">取消不需要的标记，保存时会同步排除。</p><div class="candidate-pages"><button id="candidate-prev" disabled>上一页</button><span id="candidate-page">0 / 0</span><button id="candidate-next" disabled>下一页</button></div><div id="candidate-list"><p class="no-results">完成检查后查看局部放大。</p></div></aside>
+    </div>
+  </main>
+  <div id="export-view" class="export-view" hidden><div class="export-panel"><div class="export-top"><h2>保存图片</h2><button id="close-export">关闭</button></div><p>右键下方图片，选择“图片另存为”。</p><img id="export-image" alt="生成的检查结果"></div></div>
+</body>
+</html>

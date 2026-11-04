@@ -1,0 +1,13 @@
+{
+  "name": "uv-texture-inspector",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "description": "纯 JavaScript 的 UV 贴图岛内疑似暗色杂点检查工具",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
